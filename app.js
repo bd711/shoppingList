@@ -7,19 +7,24 @@ $(document).ready(function() {
         $('.shopping-list').append('<li> <span class="shopping-item">' + userInput +
             '</span><div class="shopping-item-controls"><button class="shopping-item-toggle"><span class="button-label">check</span></button> <button class="shopping-item-delete"><span class="button-label">delete</span></button></div></li>');
         //event.preventDefault();
-       
-        $(".shopping-item-toggle").click(function() {
-            $(".shopping-item").toggleClass(".shopping-item__checked");
-
-            $(".shopping-item-delete").click(function() {
-                $("li .shopping-item").remove();
+    });
 
 
-            	});
-        	});
-    	});
-	});
+    $(".shopping-list").on("click", ".shopping-item-delete", function() {
+        $(this).parent().parent().remove();
+    });
 
+
+    $(".shopping-list").on("click", ".shopping-item-toggle", function() {
+        $(this).parent().parent().children(".shopping-item").toggleClass("shopping-item__checked");
+    });
+
+
+    $(".shopping-list").on("click", ".delete-all-checked", function() {
+        $(this).parent().parent().find(".shopping-item__checked").parent().remove();
+    });
+
+});
 
 
 
